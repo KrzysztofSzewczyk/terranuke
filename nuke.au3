@@ -20,10 +20,10 @@ $Label2 = GUICtrlCreateLabel("10 minutes, requiring a few runs of the tool. Made
 $Label3 = GUICtrlCreateLabel("you OWN or you are permitted to take down. BSD license terms apply.", 8, 112, 384, 17)
 GUISetState(@SW_SHOW)
 
+TCPStartup()
+
 While 1
 	If $IsNuking Then
-		TCPStartup()
-		
 		$socket = TCPConnect(GUICtrlRead($ServerIP), Int(GUICtrlRead($ServerPort)))
 		
 		If @error Then
@@ -46,13 +46,14 @@ While 1
 				WEnd
 				
 				TCPCloseSocket($socket)
-				TCPShutdown()
 			EndIf
 		EndIF
 	EndIf
 	
 	Sleep(10)
 WEnd
+
+TCPShutdown()
 
 Func NukeClick()
 	$IsNuking = not $IsNuking
