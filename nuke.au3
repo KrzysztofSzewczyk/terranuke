@@ -37,7 +37,7 @@ While 1
 				While $IsNuking
 					$bytesSent = TCPSend($socket, Chr(Random(0, 255, 1)))
 				
-					GUICtrlSetData($ServerOutput, GUICtrlRead($ServerOutput) & TCPRecv($iSocket, 1))
+					GUICtrlSetData($ServerOutput, GUICtrlRead($ServerOutput) & TCPRecv($socket, 1))
 				
 					If $bytesSent = 0 Then
 						GUICtrlSetData($ServerOutput, StringFormat("[ERROR] Could not send packet."))
